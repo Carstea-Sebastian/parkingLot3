@@ -1,4 +1,4 @@
-package org.parkinglot.parkinglot.common;
+package com.parking.parkinglot.common;
 
 public class CarDto {
     private Long id;
