@@ -14,6 +14,7 @@
     <jsp:doBody/>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="/WEB-INF/pages/footer.jsp" />
 <script src="${pageContext.request.contextPath}/scripts/form-validation.js"></script>
 
 </body>
