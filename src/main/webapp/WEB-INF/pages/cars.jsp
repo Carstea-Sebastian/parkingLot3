@@ -24,6 +24,12 @@
                     <div class="col">${car.getParkingSpot()}</div>
                     <div class="col">${car.getOwnerName()}</div>
                     <div class="col">
+                        <img src="${pageContext.request.contextPath}/CarPhotos?id=${car.id}" width="48" />
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-secondary" href="${pageContext.request.contextPath}/AddCarPhoto?id=${car.id}">Add photo</a>
+                    </div>
+                    <div class="col">
                         <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
                             <a class="btn btn-secondary"
                                href="${pageContext.request.contextPath}/EditCar?id=${car.id}">
