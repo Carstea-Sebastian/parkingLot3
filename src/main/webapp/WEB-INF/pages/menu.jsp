@@ -13,11 +13,11 @@
                             <a class="nav-link ${activePage eq 'Cars' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/Cars">Cars</a>
                         </c:if>
                     </li>
-                    <li class="nav-item">
-                        <c:if test="${pageContext.request.isUserInRole('READ_USERS')}">
+                    <c:if test="${pageContext.request.userPrincipal != null}">
+                        <li class="nav-item">
                             <a class="nav-link ${activePage eq 'Users' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/Users">Users</a>
-                        </c:if>
-                    </li>
+                        </li>
+                    </c:if>
                     <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
                     <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
                 </ul>
