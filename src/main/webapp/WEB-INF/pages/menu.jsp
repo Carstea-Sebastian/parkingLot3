@@ -18,8 +18,6 @@
                             <a class="nav-link ${activePage eq 'Users' ? ' active' : ''}" aria-current="page" href="${pageContext.request.contextPath}/Users">Users</a>
                         </li>
                     </c:if>
-                    <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                    <li class="nav-item"><a class="nav-link disabled" aria-disabled="true">Disabled</a></li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">

@@ -68,4 +68,24 @@ public class UsersBean {
                 .getResultList();
         return usernames;
     }
+
+    public UserDto findById(Long userId) {
+        User user = entityManager.find(User.class, userId);
+        if (user == null)
+            return null;
+        return new UserDto(user.getId(), user.getEmail(), user.getUsername());
+    }
+
+    public void updateUser(Long userId, String username, String email, String password) {
+        LOG.info("updateUser");
+        User user = entityManager.find(User.class, userId);
+        if (user != null) {
+            user.setUsername(username);
+            user.setEmail(email);
+
+            if (password != null && !password.isEmpty()) {
+                user.setPassword(passwordBean.convertToSha256(password));
+            }
+        }
+    }
 }
