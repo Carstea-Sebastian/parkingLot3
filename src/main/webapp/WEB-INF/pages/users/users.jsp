@@ -13,15 +13,16 @@
 
         <button type="submit" class="btn btn-secondary btn-lg">Invoice</button>
 
-        <div class="container text-center">
+        <div class="container text-center mt-3">
             <div class="row fw-bold border-bottom">
                 <div class="col-1">Select</div>
                 <div class="col">Username</div>
                 <div class="col">Email</div>
+                <div class="col-2">Actions</div>
             </div>
 
             <c:forEach var="user" items="${users}">
-                <div class="row border-bottom py-2">
+                <div class="row border-bottom py-2 align-items-center">
                     <div class="col-1">
                         <input type="checkbox" name="user_ids" value="${user.id}" />
                     </div>
@@ -31,18 +32,28 @@
                     <div class="col">
                             ${user.email}
                     </div>
+                    <div class="col-2">
+                        <c:if test="${pageContext.request.isUserInRole('WRITE_USERS')}">
+                            <a href="${pageContext.request.contextPath}/EditUser?id=${user.id}"
+                               class="btn btn-sm btn-outline-primary">
+                                Edit
+                            </a>
+                        </c:if>
+                    </div>
                 </div>
             </c:forEach>
         </div>
-
     </form>
+
     <c:if test="${not empty invoices}">
-        <br/>
-        <h2>Invoices</h2>
-        <c:forEach var="username" items="${invoices}" varStatus="status">
-            ${status.index + 1}. ${username}
-            <br/>
-        </c:forEach>
+        <div class="mt-4 p-3 bg-light border rounded">
+            <h2>Invoices Generated For:</h2>
+            <ul>
+                <c:forEach var="username" items="${invoices}">
+                    <li>${username}</li>
+                </c:forEach>
+            </ul>
+        </div>
     </c:if>
 
 </t:pageTemplate>
