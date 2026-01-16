@@ -35,7 +35,7 @@ public class EditUser extends HttpServlet {
         }
 
         request.setAttribute("user", user);
-        request.getRequestDispatcher("/WEB-INF/pages/editUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/users/editUser.jsp").forward(request, response);
     }
 
     @Override
