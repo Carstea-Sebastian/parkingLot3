@@ -24,7 +24,7 @@ public class AddCar extends HttpServlet {
             response) throws ServletException, IOException {
         List<UserDto> users = usersBean.findAllUsers();
         request.setAttribute("users", users);
-        request.getRequestDispatcher("/WEB-INF/pages/addCar.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/cars/addCar.jsp").forward(request, response);
     }
 
     @Override
