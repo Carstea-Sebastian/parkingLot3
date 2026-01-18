@@ -142,4 +142,18 @@ public class CarsBean {
         CarPhoto photo = photos.get(0);
         return new CarPhotoDto(photo.getId(), photo.getFilename(), photo.getFileType(), photo.getFileContent());
     }
+
+    public Integer getNumberOfFreeSpots() {
+        LOG.info("getNumberOfFreeSpots");
+        try {
+            Long occupiedSpots = entityManager.createQuery("SELECT COUNT(c) FROM Car c", Long.class)
+                    .getSingleResult();
+
+            int freeSpots = 10 - occupiedSpots.intValue();
+
+            return Math.max(0, freeSpots);
+        } catch (Exception ex) {
+            throw new EJBException(ex);
+        }
+    }
 }
