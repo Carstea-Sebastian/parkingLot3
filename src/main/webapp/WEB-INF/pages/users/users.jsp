@@ -11,8 +11,9 @@
             <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/AddUser">Add User</a>
         </c:if>
 
-        <button type="submit" class="btn btn-secondary btn-lg">Invoice</button>
-
+        <c:if test="${pageContext.request.isUserInRole('INVOICING')}">
+            <button type="submit" class="btn btn-secondary btn-lg">Invoice</button>
+        </c:if>
         <div class="container text-center mt-3">
             <div class="row fw-bold border-bottom">
                 <div class="col-1">Select</div>
@@ -24,7 +25,9 @@
             <c:forEach var="user" items="${users}">
                 <div class="row border-bottom py-2 align-items-center">
                     <div class="col-1">
-                        <input type="checkbox" name="user_ids" value="${user.id}" />
+                        <c:if test="${pageContext.request.isUserInRole('INVOICING')}">
+                            <input type="checkbox" name="user_ids" value="${user.id}" />
+                        </c:if>
                     </div>
                     <div class="col">
                             ${user.username}
@@ -45,7 +48,7 @@
         </div>
     </form>
 
-    <c:if test="${not empty invoices}">
+    <c:if test="${pageContext.request.isUserInRole('INVOICING') and not empty invoices}">
         <div class="mt-4 p-3 bg-light border rounded">
             <h2>Invoices Generated For:</h2>
             <ul>
