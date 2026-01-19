@@ -28,7 +28,7 @@ public class Users extends HttpServlet {
         List<UserDto> users = userBean.findAllUsers();
         request.setAttribute("users", users);
 
-        if (!invoiceBean.getUserIds().isEmpty()) {
+        if (request.isUserInRole("INVOICING")) {
             Collection<String> usernames = userBean.findUsernamesByUserIds(invoiceBean.getUserIds());
             request.setAttribute("invoices", usernames);
         }
@@ -38,6 +38,11 @@ public class Users extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if (!request.isUserInRole("INVOICING")) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN, "No permision.");
+            return;
+        }
+
         String[] userIdsAsString = request.getParameterValues("user_ids");
         if (userIdsAsString != null) {
             List<Long> userIds = new ArrayList<>();
